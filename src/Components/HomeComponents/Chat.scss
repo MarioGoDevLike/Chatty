@@ -1,0 +1,16 @@
+.Chat{
+    flex:1;
+    background: white;
+
+    .chatInfo{
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bolder;
+        color: lightgrey;
+        background-color: #393053;
+    }
+}

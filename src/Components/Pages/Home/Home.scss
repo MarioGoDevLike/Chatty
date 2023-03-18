@@ -1,0 +1,18 @@
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#18122B;
+    height: 100vh;
+    
+    .container{
+        display: flex;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid white;
+        width: 70%;
+        height: 80%;
+    }
+    
+
+}

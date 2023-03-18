@@ -1,0 +1,42 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    background: #18122B;
+    height: 50px;
+    padding: 10px;
+    justify-content: space-between;
+    color: #ddddf7;
+
+    .appName{
+        font-weight: bold;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .user{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img{
+            background-color: #ddddf7;
+            height: 24px;
+            width: 24px;
+            border-radius: 70%;
+            object-fit: cover;
+        }
+
+        button{
+            background-color: #443C68;
+            font-size: 10px;
+            height: 20px;
+            border-radius: 10px;
+            border: none;
+            color: #ddddf7;
+            cursor: pointer;
+
+            &:hover{
+                transition: ease-out 0.2s;
+                background-color: #635985;
+            }
+        }
+    }
+}

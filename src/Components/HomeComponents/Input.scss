@@ -1,0 +1,50 @@
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+
+    input{
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        color: #2f2d52;
+
+        &::placeholder{
+            color: lightgray;
+        }
+    }
+    .send{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .imgattach{
+            margin-top: 10px;
+        }
+
+        .attach{
+            margin-top:5px;
+        }
+
+        img{
+            height: 30px;
+            cursor: pointer;
+        }
+        button{
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            background-color: #8da4f1;
+
+            &:hover{
+                transition: ease-out;
+                opacity: 0.8;
+            }
+        }
+        
+    }
+}
