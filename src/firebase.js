@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth"
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -11,7 +12,9 @@ const firebaseConfig = {
   messagingSenderId: "397675819881",
   appId: "1:397675819881:web:3ed56a4fedc0e14c7603f8"
 };
-
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const storage = getStorage();
+export const db = getFirestore();
+
+
