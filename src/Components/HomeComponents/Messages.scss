@@ -3,5 +3,8 @@
     padding: 10px;
     height: calc(100% - 160px);
     overflow:scroll;
-
+    
+}
+.messages::-webkit-scrollbar {
+    display: none;
 }
