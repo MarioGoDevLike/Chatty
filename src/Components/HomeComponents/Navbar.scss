@@ -36,6 +36,10 @@
         align-items: center;
         gap: 10px;
 
+        .infoDiv{
+            display: flex;
+            gap:10px;
+        }
         img{
             background-color: #ddddf7;
             height: 24px;

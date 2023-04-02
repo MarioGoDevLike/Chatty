@@ -1,19 +1,48 @@
+import { useState } from "react";
 import "./Search.scss"
+import {query, collection, where, getDocs} from "firebase/firestore"
+import { db } from "../../firebase";
+
 
 const Search = () => {
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null)
+  const [err, setErr] = useState(false)
+  
+
+  const handleSearch = async () =>{
+    const q = query(
+      collection(db, "users"), where("displayName", "==", username)
+    );
+    try{
+    
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      setUser(doc.data())
+    });
+    }catch(err){
+      setErr(true)
+    }
+
+  }
+
+  const handleKey = (e) =>{ 
+    e.code === "Enter" && handleSearch();
+  }
   return (
     <div className="search">
       <div className="searchForm">
-        <input type="text" placeholder="Find the user"/>
+        <input type="text" placeholder="Find the user" onKeyDown={handleKey} onChange={e => setUsername(e.target.value)}/>
       </div>
-      <div className="userChat">
+      {err && <span>User not Found</span>}
+      {user && <div className="userChat">
         <div>
-          <img src="https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""></img>
+          <img src={user.photoURL} alt=""></img>
         </div>
         <div className="userChatInfo">
-          <span>Jimmy</span>
+          <span>{user.displayName}</span>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }
