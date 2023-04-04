@@ -1,6 +1,6 @@
 import './Register.scss'
 import avatar from "../../../assets/addavatar.png"
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth,db,storage} from '../../../firebase'
 import { useState } from 'react'
 import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
