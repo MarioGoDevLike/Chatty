@@ -2,15 +2,17 @@ import './Register.scss'
 import avatar from "../../../assets/addavatar.png"
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth,db,storage} from '../../../firebase'
-import { useState } from 'react'
 import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {setDoc, doc} from "firebase/firestore"
 import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
 
 const Register = () =>{
     const [err,setErr] = useState(false);
     const navigate = useNavigate();
+  
+
     
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -23,8 +25,6 @@ const Register = () =>{
         try{
             const res = createUserWithEmailAndPassword(auth, email, password);      
             const storageRef = ref(storage, displayName);
-            const userUid = auth.currentUser.uid;
-            
             
             const uploadTask = uploadBytesResumable(storageRef, file);
             uploadTask.on(
@@ -34,18 +34,17 @@ const Register = () =>{
                 },
                 () => {
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await setDoc(doc(db, "users",userUid), {
-            uid:userUid,
-            displayName,
-            email,
-            photoURL:downloadURL,
-            }); 
-            await setDoc(doc(db, "usersChat", userUid), {})
-
-            await updateProfile(res.user, {
+            await updateProfile((await res).user, {
                 displayName,
                 photoURL:downloadURL,
             })
+            await setDoc(doc(db, "users",(await res).user.uid), {
+                uid:(await res).user.uid,
+                displayName,
+                email,
+                photoURL:downloadURL,
+                }); 
+    
             });
             navigate("/")
         }
@@ -53,6 +52,9 @@ const Register = () =>{
         }
         catch(err){
             setErr(true)
+            console.log(err)
+           
+
         }
          
         
@@ -73,7 +75,7 @@ const Register = () =>{
                         <span>Add an avatar</span>
                     </label>
                     <button>Sign up</button>
-                    {err && <span style={{textAlign:"center", color:"red"}}>Something went wrong</span>}
+                    {err && <span style={{textAlign:"center", color:"red"}}>Something went wrong</span>}    
                 </form>
                 <p>Don't have an account? <Link to="/login"><b>Login</b></Link></p>
             </div>
