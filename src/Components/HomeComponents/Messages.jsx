@@ -21,8 +21,8 @@ const Messages = () => {
   }, [data.chatId])
   return (
     <div className="messages">
-      {messages.map(m=>(
-      <Message message={m.id}/>
+      {messages.map((m)=>(
+      <Message message={m.id} key={m.id}/>
 
       ))}
     </div>
